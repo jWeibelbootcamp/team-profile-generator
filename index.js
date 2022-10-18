@@ -47,3 +47,13 @@ const internQ = [
         message: 'Enter Intern School'
     }
 ];
+
+// team manager first, then option to add engineer, intern, or to finish building. 
+// return to menu after adding an engineer or intern. 
+// when finish building is selected, generate HTML.
+
+const newManager = () => {
+    inquirer.prompt([
+        
+    ])
+}
