@@ -1,11 +1,14 @@
+// Import all required files.
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+// Array to hold all team members.
 const team = [];
 
+// Employee questions for all team members.
 const employeeQ = [
     {
         type: 'input',
@@ -24,6 +27,7 @@ const employeeQ = [
     }
 ];
 
+// Manager specific question.
 const managerQ = [
     {
         type: 'input',
@@ -32,6 +36,7 @@ const managerQ = [
     }
 ];
 
+// Engineer specific question.
 const engineerQ = [
     {
         type: 'input',
@@ -40,6 +45,7 @@ const engineerQ = [
     }
 ];
 
+// Intern specific question.
 const internQ = [
     {
         type: 'input',
@@ -48,10 +54,29 @@ const internQ = [
     }
 ];
 
-// team manager first, then option to add engineer, intern, or to finish building. 
-// return to menu after adding an engineer or intern. 
-// when finish building is selected, generate HTML.
+// Function to add more employees after the Manager or quit the application.
+const addEmployee = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'addMore',
+            message: 'Add another team member?',
+            choices: ['Add Engineer.', 'Add Intern.', 'Quit.']
+        }
+    ]).then((response) => { // do I even need this? (66-68)
+        response = this.response;
+    });
+    
+    if (response === 'Add Engineer.') {
+        addEngineer();
+    } else if (response === 'Add Intern.') {
+        addIntern();
+    } else {
+        quit();
+    }
+};
 
+// Adds a Manager, then calls addEmployee() to inquire about further additions.
 const addManager = () => {
     inquirer.prompt([...employeeQ, managerQ])
         .then((answer) => {
@@ -61,13 +86,22 @@ const addManager = () => {
         });
 };
 
-const addEmployee = () => {
+// Adds an Engineer, then calls addEmployee() to inquire about further additions.
+const addEngineer = () => {
     inquirer.prompt([
-        {
-            type: 'list',
-            name: 'addMore',
-            message: 'Add another team member?',
-            choices: ['Add Engineer.', 'Add Intern.', 'Quit.']
-        }
-    ]);
+        
+    ])
 };
+
+// Adds an Intern, then calls addEmployee() to inquire about further additions.
+const addIntern = () => {
+
+};
+
+// Exits team builder and generates HTML. 
+const quit = () => {
+
+};
+
+// Starts the app by adding a Manager for the team.
+addManager();
