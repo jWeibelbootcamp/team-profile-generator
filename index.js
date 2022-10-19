@@ -52,8 +52,22 @@ const internQ = [
 // return to menu after adding an engineer or intern. 
 // when finish building is selected, generate HTML.
 
-const newManager = () => {
+const addManager = () => {
+    inquirer.prompt([...employeeQ, managerQ])
+        .then((answer) => {
+            let newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber);
+            team.push(newManager);
+            addEmployee();
+        });
+};
+
+const addEmployee = () => {
     inquirer.prompt([
-        
-    ])
-}
+        {
+            type: 'list',
+            name: 'addMore',
+            message: 'Add another team member?',
+            choices: ['Add Engineer.', 'Add Intern.', 'Quit.']
+        }
+    ]);
+};
