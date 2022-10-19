@@ -13,12 +13,28 @@ const employeeQ = [
     {
         type: 'input',
         name: 'name',
-        message: 'Enter Employee Name' // somehow need this to be 'Manager,' 'Engineer,' or 'Intern' depending. Also should disallow null. validate?
+        message: 'Enter Employee Name', 
+        validate: messageInput => {
+            if (messageInput.length > 0) {
+                return true;
+            } else {
+                console.log('Names require at least one character.')
+                return false;
+            }
+        }
     },
     {
-        type: 'input',
+        type: 'number',
         name: 'id',
-        message: 'Enter Employee ID'
+        message: 'Enter Employee ID',
+        // validate: messageInput => {
+        //     if (typeof(messageInput) === 'number' && messageInput !== NaN) {
+        //         return true;
+        //     } else {
+        //         console.log('Employee IDs may only be numbers and may not be blank.')
+        //         return false;
+        //     }
+        // }
     },
     {
         type: 'input',
@@ -30,7 +46,7 @@ const employeeQ = [
 // Manager specific question.
 const managerQ = [
     {
-        type: 'input',
+        type: 'number',
         name: 'office',
         message: 'Enter Manager Office Number'
     }
@@ -109,6 +125,8 @@ const addIntern = () => {
 
 // Exits team builder and generates HTML. 
 const quit = () => {
+    console.log('Click the Link to View Your Current Team!')
+
 
 };
 
