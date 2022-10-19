@@ -88,19 +88,27 @@ const addManager = () => {
 
 // Adds an Engineer, then calls addEmployee() to inquire about further additions.
 const addEngineer = () => {
-    inquirer.prompt([
-        
-    ])
+    inquirer.prompt([...employeeQ, engineerQ])
+        .then((answer) => {
+            let newEngineer = new Engineer(answer.name, answer.id, answer.email, answer.gitHub);
+            team.push(newEngineer);
+            addEmployee();
+        });
 };
 
 // Adds an Intern, then calls addEmployee() to inquire about further additions.
 const addIntern = () => {
-
+    inquirer.prompt([...employeeQ, internQ])
+        .then((answer) => {
+            let newIntern = new Intern(answer.name, answer.id, answer.email, answer.school);
+            team.push(newIntern);
+            addEmployee();
+        });
 };
 
 // Exits team builder and generates HTML. 
 const quit = () => {
-
+    
 };
 
 // Starts the app by adding a Manager for the team.
