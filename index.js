@@ -13,7 +13,7 @@ const employeeQ = [
     {
         type: 'input',
         name: 'name',
-        message: 'Enter Employee Name'
+        message: 'Enter Employee Name' // somehow need this to be 'Manager,' 'Engineer,' or 'Intern' depending. Also should disallow null. validate?
     },
     {
         type: 'input',
@@ -63,13 +63,13 @@ const addEmployee = () => {
             message: 'Add another team member?',
             choices: ['Add Engineer.', 'Add Intern.', 'Quit.']
         }
-    ]).then((response) => { // do I even need this? (66-68)
-        response = this.response;
+    ]).then((choice) => { // do I even need this? (66-68)
+        choice = this.choice;
     });
     
-    if (response === 'Add Engineer.') {
+    if (choice === 'Add Engineer.') {
         addEngineer();
-    } else if (response === 'Add Intern.') {
+    } else if (choice === 'Add Intern.') {
         addIntern();
     } else {
         quit();
@@ -78,9 +78,10 @@ const addEmployee = () => {
 
 // Adds a Manager, then calls addEmployee() to inquire about further additions.
 const addManager = () => {
+    console.log('Your first Employee is the Team Manager:');
     inquirer.prompt([...employeeQ, managerQ])
         .then((answer) => {
-            let newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber);
+            let newManager = new Manager(answer.name, answer.id, answer.email, answer.office);
             team.push(newManager);
             addEmployee();
         });
@@ -108,7 +109,7 @@ const addIntern = () => {
 
 // Exits team builder and generates HTML. 
 const quit = () => {
-    
+
 };
 
 // Starts the app by adding a Manager for the team.
