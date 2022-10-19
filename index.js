@@ -44,31 +44,31 @@ const employeeQ = [
 ];
 
 // Manager specific question.
-const managerQ = [
+const managerQ = 
     {
         type: 'number',
         name: 'office',
         message: 'Enter Manager Office Number'
     }
-];
+;
 
 // Engineer specific question.
-const engineerQ = [
+const engineerQ = 
     {
         type: 'input',
         name: 'gitHub',
         message: 'Enter Engineer GitHub'
     }
-];
+;
 
 // Intern specific question.
-const internQ = [
+const internQ = 
     {
         type: 'input',
         name: 'school',
         message: 'Enter Intern School'
     }
-];
+;
 
 // Function to add more employees after the Manager or quit the application.
 const addEmployee = () => {
@@ -81,15 +81,15 @@ const addEmployee = () => {
         }
     ]).then((choice) => { // do I even need this? (66-68)
         choice = this.choice;
+        
+        if (choice === 'Add Engineer.') { // this just ran quit regardless of what i picked...
+            addEngineer();
+        } else if (choice === 'Add Intern.') {
+            addIntern();
+        } else {
+            quit();
+        }
     });
-    
-    if (choice === 'Add Engineer.') {
-        addEngineer();
-    } else if (choice === 'Add Intern.') {
-        addIntern();
-    } else {
-        quit();
-    }
 };
 
 // Adds a Manager, then calls addEmployee() to inquire about further additions.
@@ -97,8 +97,11 @@ const addManager = () => {
     console.log('Your first Employee is the Team Manager:');
     inquirer.prompt([...employeeQ, managerQ])
         .then((answer) => {
+            console.log(answer)
             let newManager = new Manager(answer.name, answer.id, answer.email, answer.office);
+            console.log(newManager);
             team.push(newManager);
+            console.log(team);
             addEmployee();
         });
 };
