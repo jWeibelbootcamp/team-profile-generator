@@ -13,7 +13,7 @@ const employeeQ = [
     {
         type: 'input',
         name: 'name',
-        message: 'Enter Employee Name', 
+        message: 'Enter Employee Name',
         validate: messageInput => {
             if (messageInput.length > 0) {
                 return true;
@@ -24,51 +24,77 @@ const employeeQ = [
         }
     },
     {
-        type: 'number',
+        type: 'input',
         name: 'id',
         message: 'Enter Employee ID',
-        // validate: messageInput => {
-        //     if (typeof(messageInput) === 'number' && messageInput !== NaN) {
-        //         return true;
-        //     } else {
-        //         console.log('Employee IDs may only be numbers and may not be blank.')
-        //         return false;
-        //     }
-        // }
+        validate: messageInput => {
+            if (isNaN(messageInput) || messageInput === '') {
+                console.log('Employee IDs may only be numbers and may not be blank.')       
+                return false;
+            } else {
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'email',
-        message: 'Enter Employee Email'
+        message: 'Enter Employee Email',
+        validate: messageInput => {
+            if (messageInput.length > 0) {
+                return true;
+            } else {
+                console.log('Enter a valid Email.')
+                return false;
+            }
+        }
     }
 ];
 
 // Manager specific question.
-const managerQ = 
-    {
-        type: 'number',
-        name: 'office',
-        message: 'Enter Manager Office Number'
+const managerQ = {
+    type: 'number',
+    name: 'office',
+    message: 'Enter Manager Office Number',
+    validate: messageInput => {
+        if (isNaN(messageInput)) {
+            console.log('Employee IDs may only be numbers and may not be blank.')       
+            return false;
+        } else {
+            return true;
+        }
     }
-;
+};
 
 // Engineer specific question.
-const engineerQ = 
-    {
-        type: 'input',
-        name: 'gitHub',
-        message: 'Enter Engineer GitHub'
+const engineerQ = {
+    type: 'input',
+    name: 'gitHub',
+    message: 'Enter Engineer GitHub',
+    validate: messageInput => {
+        if (messageInput.length > 0) {
+            return true;
+        } else {
+            console.log('Enter a valid GitHub.') // maybe make this sound better.......
+            return false;
+        }
     }
-;
+};
 
 // Intern specific question.
-const internQ = 
-    {
-        type: 'input',
-        name: 'school',
-        message: 'Enter Intern School'
+const internQ = {
+    type: 'input',
+    name: 'school',
+    message: 'Enter Intern School',
+    validate: messageInput => {
+        if (messageInput.length > 0) {
+            return true;
+        } else {
+            console.log('Enter a valid School.') // maybe make this sound better.......
+            return false;
+        }
     }
-;
+};
 
 // Function to add more employees after the Manager or quit the application.
 const addEmployee = () => {
@@ -79,12 +105,10 @@ const addEmployee = () => {
             message: 'Add another team member?',
             choices: ['Add Engineer.', 'Add Intern.', 'Quit.']
         }
-    ]).then((choice) => { // do I even need this? (66-68)
-        choice = this.choice;
-        
-        if (choice === 'Add Engineer.') { // this just ran quit regardless of what i picked...
+    ]).then((choice) => {
+        if (choice.addMore === 'Add Engineer.') { // this just ran quit regardless of what i picked...
             addEngineer();
-        } else if (choice === 'Add Intern.') {
+        } else if (choice.addMore === 'Add Intern.') {
             addIntern();
         } else {
             quit();
@@ -129,7 +153,7 @@ const addIntern = () => {
 // Exits team builder and generates HTML. 
 const quit = () => {
     console.log('Click the Link to View Your Current Team!')
-
+// Go HTML!
 
 };
 
