@@ -1,9 +1,11 @@
 // Import all required files.
 const inquirer = require("inquirer");
 const fs = require("fs");
+const path = require('path');
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const generateHTML = require('./src/htmlGenerator');
 
 // Array to hold all team members.
 const team = [];
@@ -28,42 +30,36 @@ const employeeQ = [
         name: 'id',
         message: 'Enter Employee ID',
         validate: messageInput => {
-            if (isNaN(messageInput) || messageInput === '') {
-                console.log('Employee IDs may only be numbers and may not be blank.')       
-                return false;
-            } else {
+            const pass = messageInput.match(/^[1-9]\d*$/) // requires numbers of any length.
+            if (pass) {
                 return true;
-            }
-        }
+            } return 'Employee IDs may only be positive numbers and may not be blank.';
+        } 
     },
     {
         type: 'input',
         name: 'email',
         message: 'Enter Employee Email',
         validate: messageInput => {
-            if (messageInput.length > 0) {
+            const pass = messageInput.match(/^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/) // simple regex email filter.
+            if (pass) {
                 return true;
-            } else {
-                console.log('Enter a valid Email.')
-                return false;
-            }
-        }
+            } return 'Email address must be valid.';
+        } 
     }
 ];
 
 // Manager specific question.
 const managerQ = {
-    type: 'number',
+    type: 'input',
     name: 'office',
     message: 'Enter Manager Office Number',
     validate: messageInput => {
-        if (isNaN(messageInput)) {
-            console.log('Employee IDs may only be numbers and may not be blank.')       
-            return false;
-        } else {
+        const pass = messageInput.match(/^[1-9]\d*$/) // requires numbers of any length.
+        if (pass) {
             return true;
-        }
-    }
+        } return 'Office Number may only be positive numbers and may not be blank.';
+    } 
 };
 
 // Engineer specific question.
@@ -153,9 +149,9 @@ const addIntern = () => {
 // Exits team builder and generates HTML. 
 const quit = () => {
     console.log('Click the Link to View Your Current Team!')
-// Go HTML!
+    fs.writeFileSync(path.join(__dirname, '/dist/', 'index.html'), generateHTML(team))
 
 };
 
 // Starts the app by adding a Manager for the team.
-addManager();
+addManager(); 
