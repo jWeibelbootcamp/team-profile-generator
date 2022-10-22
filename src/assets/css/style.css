@@ -1,0 +1,31 @@
+#background-image {
+    background-image: url(../img/Baseball-Anime.jpeg);
+    background-size: cover;
+    background-position: center;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-attachment: fixed;
+}
+
+h1 {
+    text-align: center;
+    background: rgba(220, 220, 220, 0.4);
+}
+
+.card {
+    opacity: .8;
+}
+
+.card-header {
+    background-color: black;
+    text-align: center;
+    color: antiquewhite;
+    font-size: larger;
+}
+
+.card-body {
+    background: rgba(220, 220, 220, 0.5);
+}

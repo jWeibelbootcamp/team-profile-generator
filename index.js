@@ -4,7 +4,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require('path');
 const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
+const Coach = require("./lib/Coach");
 const Intern = require("./lib/Intern");
 const generateHTML = require('./src/htmlGenerator');
 
@@ -63,11 +63,11 @@ const managerQ = {
     } 
 };
 
-// Engineer specific question.
-const engineerQ = {
+// Coach specific question.
+const coachQ = {
     type: 'input',
     name: 'gitHub',
-    message: 'Enter Engineer GitHub',
+    message: 'Enter Coach GitHub',
     validate: messageInput => {
         if (messageInput.length > 0) {
             return true;
@@ -100,11 +100,11 @@ const addEmployee = () => {
             type: 'list',
             name: 'addMore',
             message: 'Add another team member?',
-            choices: ['Add Engineer.', 'Add Intern.', 'Quit.']
+            choices: ['Add Coach.', 'Add Intern.', 'Quit.']
         }
     ]).then((choice) => {
-        if (choice.addMore === 'Add Engineer.') { // this just ran quit regardless of what i picked...
-            addEngineer();
+        if (choice.addMore === 'Add Coach.') { // this just ran quit regardless of what i picked...
+            addCoach();
         } else if (choice.addMore === 'Add Intern.') {
             addIntern();
         } else {
@@ -127,12 +127,12 @@ const addManager = () => {
         });
 };
 
-// Adds an Engineer, then calls addEmployee() to inquire about further additions.
-const addEngineer = () => {
-    inquirer.prompt([...employeeQ, engineerQ])
+// Adds an Coach, then calls addEmployee() to inquire about further additions.
+const addCoach = () => {
+    inquirer.prompt([...employeeQ, coachQ])
         .then((answer) => {
-            let newEngineer = new Engineer(answer.name, answer.id, answer.email, answer.gitHub);
-            team.push(newEngineer);
+            let newCoach = new Coach(answer.name, answer.id, answer.email, answer.gitHub);
+            team.push(newCoach);
             addEmployee();
         });
 };

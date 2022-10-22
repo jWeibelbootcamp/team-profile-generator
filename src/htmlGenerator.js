@@ -1,7 +1,7 @@
 function insertTeamCards(team) {
     const HTML = [];
     HTML.push(team.filter(employee => employee.getRole() === 'Manager').map(manager => buildManagerCard(manager)));
-    HTML.push(team.filter(employee => employee.getRole() === 'Engineer').map(engineer => buildEngineerCard(engineer)).join(''));
+    HTML.push(team.filter(employee => employee.getRole() === 'Coach').map(coach => buildCoachCard(coach)).join(''));
     console.log(team);
     HTML.push(team.filter(employee => employee.getRole() === 'Intern').map(intern => buildInternCard(intern)).join(''));
     return HTML.join('');
@@ -9,42 +9,36 @@ function insertTeamCards(team) {
 
 function buildManagerCard(manager) {
     return `<div class="card" style="width: 18rem">
-    <div class="card-header">
-      Manager
-    </div>
+    <div class="card-header">${manager.getName()}</div>
     <div class="card-body">
-      <p>${manager.getName()}</p>
-      <p>${manager.getId()}</p>
-      <p>${manager.getEmail()}</p>
-      <p>${manager.getOfficeNumber()}</p>
+      <p><i class="fa-solid fa-clipboard-list" style="padding-right: 2px"></i>Manager</p>
+      <p>Number: ${manager.getId()}</p>
+      <p>Email: ${manager.getEmail()}</p>
+      <p>Office No.: ${manager.getOfficeNumber()}</p>
     </div>
   </div>`
 }
 
-function buildEngineerCard(engineer) {
+function buildCoachCard(coach) {
     return `<div class="card" style="width: 18rem">
-    <div class="card-header">
-      Engineer
-    </div>
+    <div class="card-header">${coach.getName()}</div>
     <div class="card-body">
-      <p>${engineer.getName()}</p>
-      <p>${engineer.getId()}</p>
-      <p>${engineer.getEmail()}</p>
-      <p>${engineer.getGitHub()}</p>
+      <p><i class="fa-solid fa-baseball" style="padding-right: 2px"></i>Coach</p>
+      <p>Number: ${coach.getId()}</p>
+      <p>Email: ${coach.getEmail()}</p>
+      <p>GitHub: ${coach.getGitHub()}</p>
     </div>
   </div>`
 }
 
 function buildInternCard(intern) {
     return `<div class="card" style="width: 18rem">
-    <div class="card-header">
-      Intern
-    </div>
+    <div class="card-header">${intern.getName()}</div>
     <div class="card-body">
-      <p>${intern.getName()}</p>
-      <p>${intern.getId()}</p>
-      <p>${intern.getEmail()}</p>
-      <p>${intern.getSchool()}</p>
+      <p><i class="fa-solid fa-socks" style="padding-right: 2px"></i>Intern</p>
+      <p>Number: ${intern.getId()}</p>
+      <p>Email: ${intern.getEmail()}</p>
+      <p>School: ${intern.getSchool()}</p>
     </div>
   </div>`
 }
@@ -58,21 +52,21 @@ function generateHTML(team) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
-        <link rel="stylesheet" href="./src/assets/css/style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../src/assets/css/style.css"/>
         <title>Team Generator</title>
       </head>
 
       <main id='background-image'>      
+
         <header>
-          <h1>Here's Your Team!</h1> 
+          <h1>Batter Up!</h1> 
         </header>
 
         <body>
-          <div class='container-fluid' style='display:flex'>
-            <div class='row justify-content-around>
-              <div class='col -3'>
+          <div class='container-fluid'>
+            <div class='row justify-content-around'>
+              <div class='col'>
                 ${insertTeamCards(team)}
               </div>
             </div>
