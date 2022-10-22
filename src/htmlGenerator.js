@@ -60,15 +60,25 @@ function generateHTML(team) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
-        <link rel="stylesheet" href="./assets/css/style.css"/>
+        <link rel="stylesheet" href="./src/assets/css/style.css"/>
         <title>Team Generator</title>
       </head>
 
-      <body>
-        <main class='container' style='display:flex'>
-          ${insertTeamCards(team)}
-        </main>
-      </body>
+      <main id='background-image'>      
+        <header>
+          <h1>Here's Your Team!</h1> 
+        </header>
+
+        <body>
+          <div class='container-fluid' style='display:flex'>
+            <div class='row justify-content-around>
+              <div class='col -3'>
+                ${insertTeamCards(team)}
+              </div>
+            </div>
+          </div>
+        </body>
+      </main>
     </html>`;
 }
 
