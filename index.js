@@ -1,3 +1,4 @@
+// Regex stuff from "ihateregex.io".
 // Import all required files.
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -41,7 +42,7 @@ const employeeQ = [
         name: 'email',
         message: 'Enter Employee Email',
         validate: messageInput => {
-            const pass = messageInput.match(/^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/) // simple regex email filter.
+            const pass = messageInput.match(/^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/) // "simple" regex email filter.
             if (pass) {
                 return true;
             } return 'Email address must be valid.';
@@ -150,7 +151,6 @@ const addIntern = () => {
 const quit = () => {
     console.log('Click the Link to View Your Current Team!')
     fs.writeFileSync(path.join(__dirname, '/dist/', 'index.html'), generateHTML(team))
-
 };
 
 // Starts the app by adding a Manager for the team.
