@@ -65,10 +65,8 @@ function generateHTML(team) {
 
         <body>
           <div class='container-fluid'>
-            <div class='row justify-content-around'>
-              <div class='col'>
-                ${insertTeamCards(team)}
-              </div>
+            <div class='row'>
+              ${insertTeamCards(team)}
             </div>
           </div>
         </body>

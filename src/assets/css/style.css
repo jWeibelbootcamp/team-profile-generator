@@ -15,11 +15,17 @@ h1 {
     background: rgba(220, 220, 220, 0.4);
 }
 
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 .card {
     opacity: .8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: space-between;
 }
 
 .card-header {
