@@ -2,11 +2,11 @@
     background-image: url(../img/Baseball-Anime.jpeg);
     background-size: cover;
     background-position: center;
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-attachment: fixed;
 }
 
@@ -17,6 +17,7 @@ h1 {
 
 .row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 10rem;
     margin-left: 1rem;
@@ -37,4 +38,15 @@ h1 {
 
 .card-body {
     background: rgba(220, 220, 220, 0.5);
+}
+
+@media screen and (max-width: 992px) {
+    .row {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+
+    .card {
+        margin-top: 1rem;
+    }
 }
