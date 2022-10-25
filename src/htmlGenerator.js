@@ -13,7 +13,7 @@ function buildManagerCard(manager) {
     <div class="card-body">
       <p><i class="fa-solid fa-clipboard-list" style="padding-right: 2px"></i>Manager</p>
       <p>Number: ${manager.getId()}</p>
-      <p>Email: ${manager.getEmail()}</p>
+      <p>Email: <a href='mailto:${manager.getEmail()}'>${manager.getEmail()}</a></p>
       <p>Office No.: ${manager.getOfficeNumber()}</p>
     </div>
   </div>`
@@ -25,8 +25,8 @@ function buildCoachCard(coach) {
     <div class="card-body">
       <p><i class="fa-solid fa-baseball" style="padding-right: 2px"></i>Coach</p>
       <p>Number: ${coach.getId()}</p>
-      <p>Email: ${coach.getEmail()}</p>
-      <p>GitHub: ${coach.getGitHub()}</p>
+      <p>Email: <a href='mailto:${coach.getEmail()}'>${coach.getEmail()}</a></p>
+      <p>GitHub: <a href='${coach.getGitHub()}'>${coach.getGitHub()}</a></p>
     </div>
   </div>`
 }
@@ -37,7 +37,7 @@ function buildInternCard(intern) {
     <div class="card-body">
       <p><i class="fa-solid fa-socks" style="padding-right: 2px"></i>Intern</p>
       <p>Number: ${intern.getId()}</p>
-      <p>Email: ${intern.getEmail()}</p>
+      <p>Email: <a href='mailto:${intern.getEmail()}'>${intern.getEmail()}</a></p>
       <p>School: ${intern.getSchool()}</p>
     </div>
   </div>`
